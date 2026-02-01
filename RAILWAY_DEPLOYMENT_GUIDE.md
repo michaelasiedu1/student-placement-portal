@@ -210,6 +210,15 @@ Share the frontend URL with users!
 - Ensure `node_modules` is in `.gitignore` (not pushing dependencies)
 - Check if docker image is too large
 
+### Issue: Build fails with no error message
+**Solution**: Missing environment variables
+1. Go to Railway → Select service → Environment
+2. Ensure ALL required variables are set:
+   - **Backend**: `MONGO_URI`, `PORT`, `NODE_ENV`, `FRONTEND_URL`
+   - **Frontend**: `VITE_API_URL`, `PORT`
+3. Copy `DATABASE_URL` from MongoDB service and paste as `MONGO_URI`
+4. Redeploy service
+
 ---
 
 ## 🔄 Auto-Deployment
