@@ -422,6 +422,11 @@ export default function App() {
     };
   };
 
+  // If user is not authenticated, show Login page immediately
+  if (!isLoggedIn) {
+    return <Login onLogin={(userData) => { setUser(userData); setIsLoggedIn(true); }} />;
+  }
+
   const NavTabs = () => (
     <div className="nav-tabs-container">
       <div className="nav-tabs">
