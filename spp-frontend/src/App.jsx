@@ -12,6 +12,7 @@ import {
   calculateAggregate,
   getSchoolCategory
 } from './utils/placementCalculator.js';
+import Login from './views/Login.jsx';
 import Dashboard from './views/Dashboard.jsx';
 import Students from './views/Students.jsx';
 import StudentProfile from './views/StudentProfile.jsx';
@@ -38,6 +39,13 @@ import BulkMessaging from './views/BulkMessaging.jsx';
 import DataBackup from './views/DataBackup.jsx';
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  });
+  const [user, setUser] = useState(() => {
+    const stored = localStorage.getItem('user');
+    return stored ? JSON.parse(stored) : null;
+  });
   const [currentView, setCurrentView] = useState(() => {
     return localStorage.getItem('currentView') || 'dashboard';
   }); // 'dashboard', 'students', 'registration', 'add-test', 'reports'
@@ -465,6 +473,25 @@ export default function App() {
             <button onClick={() => handleViewChange('parent-portal')}>👨‍👩‍👧 Parent Portal</button>
           </div>
         </div>
+
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <span style={{ color: '#666', fontSize: '14px' }}>👤 {user?.name || user?.email}</span>
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: '8px 16px',
+              background: '#ff6b6b',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold'
+            }}
+          >
+            🚪 Logout
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -647,5 +674,25 @@ export default function App() {
       <DataBackup students={students} />
     </>;
   }
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('currentView');
+    setIsLoggedIn(false);
+    setUser(null);
+    setCurrentView('dashboard');
+  };
+
+  // Show login page if not authenticated
+  if (!isLoggedIn) {
+    return <Login onLogin={(userData) => {
+      setUser(userData);
+      setIsLoggedIn(true);
+    }} />;
+  }
+
   return null;
 }
