@@ -399,6 +399,182 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Responsive additions */
+
+/* Mobile-first adjustments */
+html, body {
+  -webkit-text-size-adjust: 100%;
+}
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card, #fff);
+  color: var(--text-primary, #111);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-primary);
+}
+
+.login-header { text-align: center; margin-bottom: 1rem; }
+.login-title { font-size: 1.25rem; margin: 0 0 6px 0; color: var(--text-primary); }
+.login-subtitle { font-size: 0.95rem; margin: 0; color: var(--text-secondary); }
+
+.login-form { display: flex; flex-direction: column; gap: 0.75rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-label { font-weight: 600; font-size: 0.95rem; color: var(--text-primary); }
+.form-input { padding: 0.8rem 1rem; border-radius: 8px; border: 1px solid var(--border-primary); background: var(--bg-tertiary); color: var(--text-primary); font-size: 0.95rem; }
+.form-error { color: var(--accent-red); background: rgba(209, 42, 42, 0.06); padding: 0.6rem; border-radius: 6px; font-size: 0.9rem; }
+
+.login-submit { width: 100%; padding: 0.85rem; font-size: 1rem; }
+.login-divider { text-align: center; color: var(--text-muted); margin: 1rem 0; }
+.login-demo { width: 100%; padding: 0.75rem; font-size: 0.95rem; }
+.login-footer { margin-top: 0.9rem; background: rgba(255,255,255,0.02); padding: 0.8rem; border-radius: 6px; }
+.footer-text { font-size: 0.85rem; color: var(--text-secondary); margin: 0.2rem 0; }
+
+/* Fluid container adjustments */
+.container { padding: 1rem; max-width: 100%; }
+
+/* Nav tabs responsive */
+.nav-tabs { flex-wrap: wrap; gap: 6px; }
+.nav-tab { padding: 0.6rem 0.75rem; font-size: 13px; }
+
+/* Form rows collapse to single column on small screens */
+.form-row { grid-template-columns: 1fr; }
+
+/* Tables & wide content: horizontal scroll wrapper */
+.table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Performance card and results scale on small screens */
+.performance-card { padding: 1rem; border-radius: 12px; }
+.performance-card h2 { font-size: 1.2rem; }
+
+/* Media queries for larger screens */
+@media (min-width: 640px) {
+  .login-box { padding: 1.5rem; max-width: 480px; }
+  .login-title { font-size: 1.5rem; }
+}
+
+@media (min-width: 768px) {
+  .container { max-width: 720px; padding: 1.25rem; }
+  .form-row { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .scores-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .preference-item { padding: 1.25rem; }
+}
+
+@media (min-width: 1024px) {
+  .container { max-width: 1100px; }
+  .login-box { max-width: 420px; }
+  .nav-tab { font-size: 14px; }
+  .performance-card { padding: 1.5rem; }
+}
+
+/* Accessibility: focus outlines */
+.form-input:focus, .form-select:focus, .btn-primary:focus, .btn-secondary:focus { outline: 3px solid rgba(0,120,212,0.12); outline-offset: 2px; }
+
+/* Dashboard & Cards */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.stat-card {
+  background: var(--bg-card);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid var(--border-primary);
+}
+.stat-number { font-size: 1.6rem; font-weight: 700; margin-top: 0.5rem; }
+.stat-percentage { font-size: 0.95rem; color: var(--text-secondary); margin-top: 0.5rem; }
+
+.performers-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+.performer-card { background: var(--bg-card); padding: 0.9rem; border-radius: 10px; border: 1px solid var(--border-primary); }
+.performer-rank { font-size: 0.95rem; font-weight: 700; color: var(--primary-blue); }
+
+/* Students list */
+.students-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.student-card { display: flex; gap: 0.75rem; align-items: center; background: var(--bg-card); padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border-primary); }
+.student-picture img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; }
+.student-picture { width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); border-radius: 8px; }
+.student-card-info { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+.card-index { font-size: 0.85rem; color: var(--text-secondary); }
+.btn-view-profile { background: transparent; border: 1px solid var(--primary-blue); color: var(--primary-blue); padding: 0.5rem 0.8rem; border-radius: 6px; cursor: pointer; }
+
+/* Filters */
+.filters-section { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+.filter-group { display: flex; gap: 0.5rem; align-items: center; }
+.filter-select { padding: 0.5rem 0.75rem; border-radius: 6px; border: 1px solid var(--border-primary); background: var(--bg-tertiary); color: var(--text-primary); }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
+.modal { background: var(--bg-secondary); color: var(--text-primary); border-radius: 10px; width: 100%; max-width: 900px; box-shadow: var(--shadow-lg); border: 1px solid var(--border-primary); }
+.modal-header, .modal-footer { padding: 0.75rem 1rem; display: flex; align-items: center; justify-content: space-between; }
+.modal-body { padding: 1rem; }
+.close-btn { background: transparent; border: none; font-size: 1.1rem; cursor: pointer; }
+
+/* Profile layout */
+.profile-header { display: flex; flex-direction: column; gap: 0.75rem; align-items: center; }
+.profile-picture-main img { width: 140px; height: 140px; object-fit: cover; border-radius: 10px; }
+.profile-header-info { text-align: center; }
+.profile-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1rem; }
+.profile-section { background: var(--bg-card); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-primary); }
+.detail-row { display: flex; gap: 0.5rem; justify-content: space-between; padding: 0.35rem 0; border-bottom: 1px dashed rgba(255,255,255,0.02); }
+.label { color: var(--text-secondary); font-weight: 600; }
+.value { color: var(--text-primary); }
+.profile-actions { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+
+/* Test history */
+.test-history { display: grid; gap: 0.75rem; }
+.test-item { background: var(--bg-card); padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border-primary); }
+.test-header { display: flex; justify-content: space-between; align-items: center; }
+.subject-scores { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.subject-score { background: rgba(255,255,255,0.02); padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.9rem; }
+
+/* Picture preview */
+.picture-preview img { width: 100%; max-width: 180px; height: auto; border-radius: 8px; }
+.picture-input { margin-top: 0.5rem; }
+
+/* Small button */
+.btn-small { padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid var(--border-primary); background: transparent; cursor: pointer; }
+
+/* Danger button */
+.btn-danger { background: #dc3545; color: #fff; border: none; padding: 0.6rem 0.9rem; border-radius: 6px; cursor: pointer; }
+
+/* Responsive breakpoints */
+@media (min-width: 640px) {
+  .students-grid { grid-template-columns: repeat(2, 1fr); }
+  .performers-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+  .filters-section { flex-direction: row; }
+  .profile-header { flex-direction: row; align-items: center; }
+  .profile-header-info { text-align: left; margin-left: 1rem; }
+}
+
+@media (min-width: 768px) {
+  .students-grid { grid-template-columns: repeat(3, 1fr); }
+  .performers-grid { grid-template-columns: repeat(3, 1fr); }
+  .dashboard-grid { grid-template-columns: repeat(4, 1fr); }
+  .profile-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1024px) {
+  .students-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+
+
 .aggregate-display {
   display: flex;
   justify-content: center;

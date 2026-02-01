@@ -422,9 +422,20 @@ export default function App() {
     };
   };
 
+  // Handle logout (must be declared before NavTabs to avoid reference errors)
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('currentView');
+    setIsLoggedIn(false);
+    setUser(null);
+    setCurrentView('dashboard');
+  };
+
   // If user is not authenticated, show Login page immediately
   if (!isLoggedIn) {
-    return <Login onLogin={(userData) => { setUser(userData); setIsLoggedIn(true); }} />;
+    return <Login onLogin={(userData) => { setUser(userData); setIsLoggedIn(true); setCurrentView('dashboard'); }} />;
   }
 
   const NavTabs = () => (
@@ -680,24 +691,15 @@ export default function App() {
     </>;
   }
 
-  // Handle logout
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('currentView');
-    setIsLoggedIn(false);
-    setUser(null);
-    setCurrentView('dashboard');
-  };
-
-  // Show login page if not authenticated
-  if (!isLoggedIn) {
-    return <Login onLogin={(userData) => {
-      setUser(userData);
-      setIsLoggedIn(true);
-    }} />;
-  }
-
-  return null;
+  // Default: show dashboard
+  const stats = getDashboardStats();
+  return <>
+    <NavTabs />
+    <Dashboard
+      stats={stats}
+      importMessage={importMessage}
+      handleImportStudents={handleImportStudents}
+      handleImportMockTests={handleImportMockTests}
+    />
+  </>;
 }
